@@ -1,0 +1,105 @@
+{
+    "questions": [
+      {
+        "question": "What is the primary function of an operating system?",
+        "choices": [
+          "To run web browsers",
+          "To manage hardware resources and provide services to software",
+          "To create documents",
+          "To design websites"
+        ],
+        "answer": "To manage hardware resources and provide services to software"
+      },
+      {
+        "question": "What does HTML stand for?",
+        "choices": [
+          "Hypertext Markup Language",
+          "Hyperlink and Text Markup Language",
+          "Highly Technical Markup Language",
+          "Hyper Transfer Markup Language"
+        ],
+        "answer": "Hypertext Markup Language"
+      },
+      {
+        "question": "Which programming language is commonly used for front-end web development?",
+        "choices": [
+          "Java",
+          "Python",
+          "Ruby",
+          "JavaScript"
+        ],
+        "answer": "JavaScript"
+      },
+      {
+        "question": "What is the purpose of CSS in web development?",
+        "choices": [
+          "To define the structure of a web page",
+          "To add interactivity to a web page",
+          "To style the presentation of a web page",
+          "To handle server-side logic"
+        ],
+        "answer": "To style the presentation of a web page"
+      },
+      {
+        "question": "What is a responsive web design?",
+        "choices": [
+          "A design that responds to user input",
+          "A design that adapts to different screen sizes and devices",
+          "A design with colorful graphics",
+          "A design that loads quickly"
+        ],
+        "answer": "A design that adapts to different screen sizes and devices"
+      },
+      {
+        "question": "What is the purpose of a web server?",
+        "choices": [
+          "To create web content",
+          "To browse the internet",
+          "To host and serve web pages to clients",
+          "To design web applications"
+        ],
+        "answer": "To host and serve web pages to clients"
+      },
+      {
+        "question": "What does SEO stand for in the context of web development?",
+        "choices": [
+          "Search Engine Optimization",
+          "Secure Encrypted Output",
+          "Server Error Output",
+          "Structured Entity Objects"
+        ],
+        "answer": "Search Engine Optimization"
+      },
+      {
+        "question": "Which database management system is commonly used for web applications?",
+        "choices": [
+          "MySQL",
+          "Microsoft Word",
+          "Adobe Photoshop",
+          "Linux"
+        ],
+        "answer": "MySQL"
+      },
+      {
+        "question": "What is the purpose of the HTTP protocol in web development?",
+        "choices": [
+          "To format text on a web page",
+          "To secure database connections",
+          "To transfer data between a client and a server",
+          "To create animations"
+        ],
+        "answer": "To transfer data between a client and a server"
+      },
+      {
+        "question": "What is a commonly used version control system in web development?",
+        "choices": [
+          "Java Virtual Machine",
+          "Git",
+          "C++ Compiler",
+          "Python Interpreter"
+        ],
+        "answer": "Git"
+      }
+    ]
+  }
+  
