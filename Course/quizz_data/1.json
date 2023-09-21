@@ -1,0 +1,161 @@
+ {   "questions": [
+       { 
+        "question": "What is the primary function of an operating system?",
+        "choices": [
+          "To run web browsers",
+          "To manage hardware resources and provide services to software",
+          "To create documents",
+          "To design websites"
+        ],
+        "answer": "To manage hardware resources and provide services to software"
+      },
+      {
+        "question": "What does HTML stand for?",
+        "choices": [
+          "Hyper Transfer Markup Language",
+          "Hyper Text Markup Language",
+          "Highly Technical Markup Language",
+          "Hyperlink and Text Markup Language"
+        ],
+        "answer": "Hyper Text Markup Language"
+      },
+      {
+        "question": "Which component of a computer is responsible for processing graphics and images?",
+        "choices": [
+          "CPU",
+          "GPU",
+          "RAM",
+          "Hard Drive"
+        ],
+        "answer": "GPU"
+      },
+      {
+        "question": "What is the purpose of a URL (Uniform Resource Locator)?",
+        "choices": [
+          "To identify a specific file on a computer",
+          "To specify a location on a map",
+          "To uniquely identify a resource on the internet",
+          "To send emails"
+        ],
+        "answer": "To uniquely identify a resource on the internet"
+      },
+      {
+        "question": "What does LAN stand for in networking?",
+        "choices": [
+          "Local Area Network",
+          "Large Area Network",
+          "Limited Access Network",
+          "Local Access Node"
+        ],
+        "answer": "Local Area Network"
+      },
+      {
+        "question": "What does CPU stand for?",
+        "choices": [
+          "Central Process Unit",
+          "Computer Personal Unit",
+          "Central Processing Unit",
+          "Central Printed Unit"
+        ],
+        "answer": "Central Processing Unit"
+      },
+      {
+        "question": "Which of the following is a programming language?",
+        "choices": [
+          "HTML",
+          "PDF",
+          "JPEG",
+          "Java"
+        ],
+        "answer": "Java"
+      },
+      {
+        "question": "What is the purpose of RAM in a computer?",
+        "choices": [
+          "To store long-term data",
+          "To store the operating system",
+          "To provide temporary storage for data and programs",
+          "To store the computer's firmware"
+        ],
+        "answer": "To provide temporary storage for data and programs"
+      },
+      {
+        "question": "Which protocol is used to send email?",
+        "choices": [
+          "HTTP",
+          "FTP",
+          "SMTP",
+          "TCP"
+        ],
+        "answer": "SMTP"
+      },
+      {
+        "question": "What is an IP address used for?",
+        "choices": [
+          "To identify a specific website",
+          "To identify a specific computer or device on a network",
+          "To send emails",
+          "To store files"
+        ],
+        "answer": "To identify a specific computer or device on a network"
+      },
+      {
+        "question": "What is the purpose of a firewall in network security?",
+        "choices": [
+          "To keep the computer warm",
+          "To filter and monitor network traffic for security purposes",
+          "To speed up internet connections",
+          "To store passwords"
+        ],
+        "answer": "To filter and monitor network traffic for security purposes"
+      },
+      {
+        "question": "What is the primary function of an operating system?",
+        "choices": [
+          "To run web browsers",
+          "To manage hardware resources and provide services to software",
+          "To create documents",
+          "To design websites"
+        ],
+        "answer": "To manage hardware resources and provide services to software"
+      },
+      {
+        "question": "What does HTML stand for?",
+        "choices": [
+          "Hyper Transfer Markup Language",
+          "Hyper Text Markup Language",
+          "Highly Technical Markup Language",
+          "Hyperlink and Text Markup Language"
+        ],
+        "answer": "Hyper Text Markup Language"
+      },
+      {
+        "question": "Which component of a computer is responsible for processing graphics and images?",
+        "choices": [
+          "CPU",
+          "GPU",
+          "RAM",
+          "Hard Drive"
+        ],
+        "answer": "GPU"
+      },
+      {
+        "question": "What is the purpose of a URL (Uniform Resource Locator)?",
+        "choices": [
+          "To identify a specific file on a computer",
+          "To specify a location on a map",
+          "To uniquely identify a resource on the internet",
+          "To send emails"
+        ],
+        "answer": "To uniquely identify a resource on the internet"
+      },
+      {
+        "question": "What does LAN stand for in networking?",
+        "choices": [
+          "Local Area Network",
+          "Large Area Network",
+          "Limited Access Network",
+          "Local Access Node"
+        ],
+        "answer": "Local Area Network"
+      }]}

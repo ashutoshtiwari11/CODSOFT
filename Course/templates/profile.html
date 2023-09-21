@@ -1,0 +1,43 @@
+{% extends 'basic.html' %}
+{% load static %}
+{% block body %}
+<div class="container mx-auto mt-8">
+
+    <div class="max-w-md mx-auto bg-white rounded-lg shadow-md overflow-hidden">
+        <div class="px-4 py-6">
+            <img src="{{profile.img.url}}" alt="Profile Picture" class="w-32 h-32 mx-auto rounded-full">
+            <h1 class="text-2xl font-semibold text-center mt-4">{{ profile.fname }} {{ profile.lname }}</h1>
+            <p class="text-gray-500 text-center">{{ profile.country }}, {{ profile.city }}</p>
+        </div>
+        <div class="px-4 py-3 border-t border-gray-200">
+            <h2 class="text-lg font-semibold">User Information</h2>
+            <ul class="mt-2 space-y-2">
+                <li><span class="font-semibold">Username:</span> {{ user.username }}</li>
+                <li><span class="font-semibold">Email:</span> {{ user.username }}</li>
+                <li><span class="font-semibold">Account Type:</span> {{ profile.typeofaccount }}</li>
+                <!-- Add other user information here -->
+            </ul>
+        </div>
+        <hr class="max-w-md my-2 flex justify-center border border-solid ">
+   
+        <h2 class="text-blue-500 my-5 font-semibold flex justify-center"> Courses Enrolled In </h2>
+            
+        {% if enrolled|length > 0 %}
+
+        {% for progress in enrolled %}
+        <div class="container bg-white w-[80%] m-auto flex flex-row">
+            <div class="container"><img src="{{progress.course.img.url}}" class="rounded-full border w-40" alt=""></div>
+            <div class="flex flex-col p-4"> 
+            <h2 class="font-semibold text-md">{{ progress.course.name|title }}</h2>
+            <p><b>Rs. {{progress.course.cost}}</b></p>
+            <p>{{progress.course.duration }} hrs.</p>
+           Status: <a href="{% url 'try_courses' id=progress.course.id %}" class="font-semibold shadow-md p-2 bg-gray-300"><button>{% if progress.Completed == True %} Completed {% else %} Pending {% endif %}</button></a>
+        </div>
+     </div> <hr class="max-w-md my-2 flex justify-center border border-solid ">
+     {% endfor %}
+    {% else %}
+    <div class="container bg-white w-[80%] m-auto flex flex-row">
+            <h1>Not Yet Enrolled in Any Courses </h1>
+    </div>{% endif %}
+</div></div>
+{% endblock %}

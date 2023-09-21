@@ -1,0 +1,90 @@
+{% extends 'basic.html' %}
+{% load static %}
+{% block style %}
+<style>
+    /* Custom styles for course quiz page */
+    .quiz-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .quiz-header {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .question {
+        margin-bottom: 20px;
+    }
+
+    .question-text {
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    .choices {
+        list-style: none;
+        padding-left: 0;
+    }
+
+    .choice {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    .choice input[type="radio"] {
+        margin-right: 10px;
+    }
+
+    .submit-button {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .submit-button button {
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .submit-button button:hover {
+        background-color: #0056b3;
+    }
+</style>
+{% endblock %}
+{% block body %}
+<div class="quiz-container">
+    <div class="quiz-header">
+        <h1 class="text-2xl font-bold mb-4">Course Quiz</h1>
+    </div>
+    <form action="{% url 'evaluate' id  %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% for question in data.questions %}
+        <!-- Question {{ forloop.counter }} -->
+        <div class="question">
+            <p class="question-text">{{ forloop.counter }}. {{ question.question }}</p>
+            <ul class="choices">
+                {% for choice in question.choices %}
+                <li class="choice">
+                    <input type="radio" required class="mr-2" name="q{{ forloop.parentloop.counter }}" value="{{ forloop.counter }}">
+                    <label for="q{{ forloop.parentloop.counter }}_option{{ forloop.counter }}">{{ choice }}</label>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endfor %}
+        <div class="submit-button">
+            <button type="submit">Submit Quiz</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

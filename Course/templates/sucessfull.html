@@ -1,0 +1,74 @@
+{% extends 'basic.html' %}
+{% load static %}
+{% block style %}
+<style>
+    /* Custom CSS for animations */
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    .fadeIn {
+        animation: fadeIn 1s ease-in-out;
+    }
+</style>
+{% endblock %}
+{% block body %}
+   {% if status == 'Completed' %}
+   <div class="flex justify-center p-4 items-center h-screen">
+    <div class="bg-white p-8 rounded-lg shadow-md text-center">
+        <!-- Success Icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto w-16 h-16 text-green-500 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+        </svg>
+
+        <!-- Success Message -->
+        <h1 class="text-2xl font-semibold text-green-500 mt-4 animate-fadeIn">Congratulations!</h1>
+        <p class="text-gray-600 mt-2">You have successfully completed the course.</p>
+
+        <!-- Marks Scored -->
+        <div class="mt-4">
+            <h2 class="text-lg font-semibold">Marks Scored: {{score}}</h2>
+            <p class="text-2xl font-bold text-green-500 mt-2">{{percent}}</p>
+        </div>
+
+        <!-- Return to Dashboard Button -->
+                
+        <div class="mt-6 space-x-4">
+            <a href="{% url 'certification' %}" class="bg-green-500 text-white py-2 px-4 rounded-md inline-block hover:bg-red-700 transition duration-300" >Claim Certificate</a>
+            <a href="{% url 'profile' %}" class="bg-green-500 text-white py-2 px-4 rounded-md inline-block mt-6 hover:bg-green-700 transition duration-300">Return to Dashboard</a>
+            <a href="{% url 'quiz' id=course_id %}" class="bg-green-500 text-white py-2 px-4 rounded-md inline-block hover:bg-red-700 transition duration-300">Redo Quiz</a>
+        </div>
+    </div>
+</div>
+   {% else %}
+   <div class="flex justify-center items-center h-screen">
+    <div class="bg-white p-8 rounded-lg shadow-md text-center">
+        <!-- Failure Icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto w-16 h-16 text-red-500 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+
+        <!-- Failure Message -->
+        <h1 class="text-2xl font-semibold text-red-500 mt-4 animate-fadeIn">Oops! You didn't pass.</h1>
+        <p class="text-gray-600 mt-2">Don't worry; you can try again.</p>
+
+        <!-- Marks Scored -->
+        <div class="mt-4">
+            <h2 class="text-lg font-semibold">Marks Scored: {{score}}</h2>
+            <p class="text-2xl font-bold text-red-500 mt-2">{{percent}}</p>
+        </div>
+
+        <!-- Buttons -->
+        <div class="mt-6 space-x-4">
+            <a href="{% url 'profile' %}" class="bg-red-500 text-white py-2 px-4 rounded-md inline-block hover:bg-red-700 transition duration-300">Return to Dashboard</a>
+            <a href="{% url 'quiz' id=course_id %}" class="bg-red-500 text-white py-2 px-4 rounded-md inline-block hover:bg-red-700 transition duration-300">Redo Quiz</a>
+        </div>
+    </div>
+</div>
+   {% endif %}
+{% endblock %}

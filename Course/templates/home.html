@@ -1,0 +1,300 @@
+{% extends 'basic.html' %}
+{% load static %}
+
+{% block style %}
+<style>
+    /* Add styles for animations, icons, and other improvements here */
+    .contain_make {
+        background-image: url(static/9.jpeg);
+    }
+
+    /* Styles for profile card */
+    .profile {
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        padding: 20px;
+        border-radius: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .profile img {
+        width: 100px;
+        border-radius: 50%;
+        margin-right: 20px;
+    }
+
+    .profile button {
+        background-color: #4CAF50;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    /* Styles for CEO section */
+    .boss {
+        background-color: #f5f5f5;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        padding: 20px;
+        border-radius: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .boss h2 {
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+
+    .boss h5 {
+        font-size: 16px;
+        color: #333;
+    }
+
+    .boss img {
+        width: 100px;
+        border-radius: 50%;
+        margin-left: 20px;
+    }
+
+    /* Add more styles for other sections as needed */
+</style>
+{% endblock %}
+
+{% block body %}
+
+<div class="contain3 p-4">
+  {% if user.is_authenticated %}
+    <div class="profile container flex row-auto justify-evenly border-yellow-500 mt-4 m-10">
+        <div class="container w-[40%] p-4 m-2">
+            <img src="{% static '5.jpeg' %}" class="p-4" alt="">
+        </div>
+        <div class="p-8 m-8">
+            <h1>Welcome<i> {{user}}</i></h1>
+            <button class="border border-emerald-400 rounded-sm"><a href="{% url 'profile' %}">View Profile</a></button>
+        </div>
+    </div>
+    {% else %}
+       <!-- Section for Non-Logged-In Users -->
+<div class="non-logged-in-section bg-gray-100 py-8">
+  <div class="container mx-auto">
+      <h2 class="text-3xl font-semibold text-blue-600 mb-4">Join Veda Today!</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
+          <!-- Left Side: Illustration or Image -->
+          <div class="non-logged-in-image">
+              <img src="{% static 'nonloged.jpeg' %}" alt="Unregistered User Image" class="w-48 h-auto rounded-full">
+          </div>
+
+          <!-- Right Side: Message and CTA -->
+          <div class="non-logged-in-message bg-white rounded-lg shadow-md p-4">
+              <h3 class="text-lg font-semibold">Unlock the Power of Learning!</h3>
+              <p class="text-gray-600 mt-2">Join Veda today to access high-quality courses and accelerate your learning journey.</p>
+              <div class="mt-4">
+                  <a href="{% url 'user_register' %}" class="border border-emerald-400 rounded-full px-6 py-2 text-sm text-emerald-400 hover:bg-emerald-400 hover:text-white transition duration-300 ease-in-out">Sign Up</a>
+                  <span class="text-gray-600 ml-4">or</span>
+                  <a href="{% url 'user_authentication' %}" class="text-blue-600 ml-4 hover:underline">Log In</a>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+{% endif %}
+    <!-- CEO Section with improved design -->
+    <div class="boss container h-auto text-blue-600 text-lg font-serif flex border border-red-500 m-10">
+        <div class="columns-auto p-4 opacity-100">
+            <h2>CEO Angelena!</h2>
+            <h5>"I am glad to take this program furtherTo be a part of this change and equip Gen-Z with the latest technology we are here with Veda."</h5>
+        </div>
+        <div class="container w-[40%] ">
+            <img class="p-4" src="{% static '5.jpeg' %}" alt="">
+        </div>
+    </div>
+
+  <!-- Improved Featured Courses Section -->
+<div class="featured-courses-section bg-gray-100 py-8">
+  <div class="container mx-auto">
+      <h2 class="text-3xl font-semibold text-blue-600 mb-4 flex justify-center">Featured Courses</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <!-- Course Card 1 -->
+          {% for course in courses %}
+          <div class="course-card bg-white rounded-lg shadow-md p-4">
+              <img src="{{course.img.url}}" alt="Course Image" class="w-full h-48 object-cover rounded-t-lg">
+              <h3 class="text-lg font-semibold mt-2">{{course.name}}</h3>
+              <p class="text-gray-600 flex justify-center">Duration: {{course.duration}} hrs.</p>
+              <div class="flex justify-between items-center mt-4">
+                  <div class="text-xl font-bold text-blue-600 mx-2">Rs.{{course.cost}}</div>
+                  <button class="border border-black rounded-full px-4 py-2 text-sm text-black hover:bg-gray-300"><a href="{% url 'try_courses' id=course.id %}">Apply Now</a></button>
+              </div>
+          </div>
+          {% endfor %}
+          <!-- Add more course cards here -->
+
+      </div>
+  </div>
+</div>
+
+
+
+
+    <!-- Reviews Section -->
+   <!-- Improved Reviews Section -->
+<div class="reviews-section bg-gray-100 py-8">
+  <div class="container mx-auto">
+      <h2 class="text-3xl font-semibold text-blue-600 mb-4 flex justify-center">What Others Believed</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <!-- Review Card 1 -->
+          <div class="review-card bg-white rounded-lg shadow-md p-4">
+              <div class="flex items-center">
+                  <img src="{% static '3.jpeg' %}" alt="Reviewer Image" class="w-12 h-12 object-cover rounded-full mr-4">
+                  <div>
+                      <h3 class="text-lg font-semibold">Ashutosh Tiwari</h3>
+                      <div class="flex items-center">
+                          <div class="text-yellow-400">
+                              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                              </svg>
+                          </div>
+                          <div class="text-gray-600 ml-1">4.5</div>
+                      </div>
+                  </div>
+              </div>
+              <p class="text-gray-600 mt-2">"Veda has been a transformative experience for me. The courses are top-notch, and I've learned so much."</p>
+          </div>
+
+          <!-- Review Card 2 -->
+          <div class="review-card bg-white rounded-lg shadow-md p-4">
+              <div class="flex items-center">
+                  <img src="{% static '4.jpeg' %}" alt="Reviewer Image" class="w-12 h-12 object-cover rounded-full mr-4">
+                  <div>
+                      <h3 class="text-lg font-semibold">Jane Smith</h3>
+                      <div class="flex items-center">
+                          <div class="text-yellow-400">
+                              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                              </svg>
+                          </div>
+                          <div class="text-gray-600 ml-1">4.8</div>
+                      </div>
+                  </div>
+              </div>
+              <p class="text-gray-600 mt-2">"I can't recommend Veda enough. The instructors are knowledgeable, and the learning environment is fantastic."</p>
+          </div>
+
+          <div class="review-card bg-white rounded-lg shadow-md p-4">
+            <div class="flex items-center">
+                <img src="{% static '4.jpeg' %}" alt="Reviewer Image" class="w-12 h-12 object-cover rounded-full mr-4">
+                <div>
+                    <h3 class="text-lg font-semibold">Jane Smith</h3>
+                    <div class="flex items-center">
+                        <div class="text-yellow-400">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                        </div>
+                        <div class="text-gray-600 ml-1">4.8</div>
+                    </div>
+                </div>
+            </div>
+            <p class="text-gray-600 mt-2">"I can't recommend Veda enough. The instructors are knowledgeable, and the learning environment is fantastic."</p>
+        </div>
+
+        <div class="review-card bg-white rounded-lg shadow-md p-4">
+          <div class="flex items-center">
+              <img src="{% static '4.jpeg' %}" alt="Reviewer Image" class="w-12 h-12 object-cover rounded-full mr-4">
+              <div>
+                  <h3 class="text-lg font-semibold">Jane Smith</h3>
+                  <div class="flex items-center">
+                      <div class="text-yellow-400">
+                          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                          </svg>
+                      </div>
+                      <div class="text-gray-600 ml-1">4.8</div>
+                  </div>
+              </div>
+          </div>
+          <p class="text-gray-600 mt-2">"I can't recommend Veda enough. The instructors are knowledgeable, and the learning environment is fantastic."</p>
+      </div>
+
+          <!-- Add more review cards here -->
+
+      </div>
+  </div>
+</div>
+
+<!-- Improved Host Course Section -->
+<div class="host-course-section bg-white m-10 py-4"></div>
+  <div class="container mx-auto flex flex-col items-center justify-center text-center">
+      <h2 class="text-3xl font-semibold text-blue-600 mb-4">Host Your Course in a Few Easy Steps</h2>
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-6">
+          <!-- Step 1: Upload Details -->
+          <div class="host-step">
+              <div class="host-step-icon bg-blue-600 text-white rounded-full p-4">
+                  <i class="fas fa-file-upload"></i> <!-- Replace with your icon -->
+              </div>
+              <h3 class="text-lg font-semibold">Upload Details</h3>
+              <p class="text-gray-600">Provide course information and details.</p>
+          </div>
+
+          <!-- Step 2: Pay Platform Fees -->
+          <div class="host-step">
+              <div class="host-step-icon bg-blue-600 text-white rounded-full p-4">
+                  <i class="fas fa-money-bill-wave"></i> <!-- Replace with your icon -->
+              </div>
+              <h3 class="text-lg font-semibold">Pay Platform Fees</h3>
+              <p class="text-gray-600">Complete payment for hosting your course.</p>
+          </div>
+
+          <!-- Step 3: Upload Material -->
+          <div class="host-step">
+              <div class="host-step-icon bg-blue-600 text-white rounded-full p-4">
+                  <i class="fas fa-cloud-upload-alt"></i> <!-- Replace with your icon -->
+              </div>
+              <h3 class="text-lg font-semibold">Upload Material</h3>
+              <p class="text-gray-600">Share course materials and resources.</p>
+          </div>
+      </div>
+
+      <p class="text-sm text-blue-600 mt-4">** Only verified faculty members from IT Institutes are allowed to host courses.</p>
+  </div>
+</div>
+
+
+<!-- Contact Section -->
+<!-- Improved Contact Us Section -->
+<div class="contact-us-section bg-gray-100 py-8">
+  <div class="container mx-auto">
+      <h2 class="text-3xl font-semibold text-blue-600 mb-4">Contact Us</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
+          <!-- Left Side: Contact Details -->
+          <div class="contact-details bg-white rounded-lg shadow-md p-4">
+              <h3 class="text-lg font-semibold mb-2">Contact Details</h3>
+              <ul class="list-disc pl-4">
+                  <li class="text-gray-600">Email: contact@veda.com</li>
+                  <li class="text-gray-600">Phone: +1 123-456-7890</li>
+                  <li class="text-gray-600">Address: 123 Main Street, City, Country</li>
+              </ul>
+          </div>
+
+          <!-- Right Side: Contact Form -->
+          <div class="contact-form bg-white rounded-lg shadow-md p-4">
+              <h3 class="text-lg font-semibold mb-2">Send us a Message</h3>
+              <form>
+                  <input type="text" placeholder="Your Name" class="w-full mb-2 p-2 border border-gray-300 rounded">
+                  <input type="email" placeholder="Your Email" class="w-full mb-2 p-2 border border-gray-300 rounded">
+                  <textarea placeholder="Your Message" class="w-full mb-2 p-2 border border-gray-300 rounded"></textarea>
+                  <button class="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 transition duration-300 ease-in-out">Send Message</button>
+              </form>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+
+
+{% endblock %}

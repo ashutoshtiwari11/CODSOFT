@@ -1,0 +1,117 @@
+{% extends 'basic.html' %}
+{% load static %}
+{% block body %}
+<div class="flex flex-row justify-around">
+<div class="host-course-section mx-w-lg bg-white my-10 py-4">
+  <div class="container mx-auto flex flex-col items-center justify-center text-center">
+      <h2 class="text-3xl font-semibold text-blue-600 mb-4">Host Your Course in a Few Easy Steps</h2>
+      <div class="flex flex-col sm:flex-col items-center justify-center gap-6">
+          <!-- Step 1: Upload Details -->
+          <div class="host-step">
+              <div class="host-step-icon bg-blue-600 text-white rounded-full p-4">
+                  <i class="fas fa-file-upload"></i> <!-- Replace with your icon -->
+              </div>
+              <h3 class="text-lg font-semibold">Upload Details</h3>
+              <p class="text-gray-600">Provide course information and details.</p>
+          </div>
+
+          <!-- Step 2: Pay Platform Fees -->
+          <div class="host-step">
+              <div class="host-step-icon bg-blue-600 text-white rounded-full p-4">
+                  <i class="fas fa-money-bill-wave"></i> <!-- Replace with your icon -->
+              </div>
+              <h3 class="text-lg font-semibold">Pay Platform Fees</h3>
+              <p class="text-gray-600">Complete payment for hosting your course.</p>
+          </div>
+
+          <!-- Step 3: Upload Material -->
+          <div class="host-step">
+              <div class="host-step-icon bg-blue-600 text-white rounded-full p-4">
+                  <i class="fas fa-cloud-upload-alt"></i> <!-- Replace with your icon -->
+              </div>
+              <h3 class="text-lg font-semibold">Upload Material</h3>
+              <p class="text-gray-600">Share course materials and resources.</p>
+          </div>
+      </div>
+      <p class="text-sm text-blue-600 mt-4">** Only verified faculty members from IT Institutes are allowed to host courses.</p>
+  </div>
+  <div><img src="../static/logo.jpeg" alt="lOGO" class="mx-auto max-w-md my-20 flex rounded-full "></div>
+  
+</div>
+<div class="flex mt-10 justify-center items-center">
+    <div class="w-full max-w-md p-6 bg-white rounded-lg shadow-lg">
+        <h1 class="text-2xl font-bold mb-4 text-center">Upload Course Information</h1>
+        <form action="{% url 'course_upload' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="mb-4">
+                <h2 class="font-sans font-semibold text-blue-500">Course Title: </h2>
+                {{ form.name }}
+            </div>
+            <div class="mb-4">
+                <h2 class="font-sans font-semibold text-blue-500">Instructor Email: </h2>
+               
+                {{ form.email }}
+            </div>
+            <div class="mb-4">
+                <h2 class="font-sans font-semibold text-blue-500">Instructor Phone No.:  </h2>
+                {{ form.phone }}
+                <span class="text-sm flex justify-end"> **for office use only
+                </span>
+            </div>
+            <div class="mb-4">
+                <h2 class="font-sans font-semibold text-blue-500">Course Category:  </h2>
+                {{ form.cate }}
+            </div>
+            <div class="mb-4">
+                <h2 class="font-sans font-semibold text-blue-500">Describe Course</h2>
+                {{ form.desc }}
+                <span class="text-sm flex justify-end"> **1000 character | for Featuring 
+                </span>
+            </div>
+            <div class="mb-4">
+                <h2 class="font-sans font-semibold text-blue-500">Discussion Forum Link</h2>
+                {{ form.link }}
+            </div>
+            <div class="mb-4">
+                <h2 class="font-sans font-semibold text-blue-500">Product Featuring Image</h2>
+                {{ form.img }}
+            </div>
+            <div class="mb-4">
+                <h2 class="font-sans font-semibold text-blue-500">Youtube link of Course</h2>
+                {{ form.video_link }}
+                <span class="text-sm flex justify-end"> **must be embeeded type link
+                </span>
+            </div>
+            <div class="mb-4">
+                <h2 class="font-sans font-semibold text-blue-500">Duration Of Course:</h2>
+                {{ form.duration }}
+            </div>
+            <div class="mb-4">
+                <h2 class="font-sans font-semibold text-blue-500">Author Name:</h2>
+               
+                {{ form.author }}
+                <span class="text-sm flex justify-end"> **must be author of course
+                </span>
+            </div>
+            <div class="mb-4">
+                <h2 class="font-sans font-semibold text-blue-500">Author Bio:</h2>
+                {{ form.author_details }}
+                <span class="text-sm flex justify-end"> **500 char
+                </span>
+            </div>
+            <div class="mb-4">
+                <h2 class="font-sans font-semibold text-blue-500">Price: </h2>
+               
+                {{ form.cost }}
+                <span class="text-sm flex justify-end"> **your offer
+                </span>
+            </div>
+            <div class="mb-4">
+                <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md">
+                    Submit
+                </button>
+            </div>
+        </form>
+    </div>
+</div></div>
+{% endblock %}

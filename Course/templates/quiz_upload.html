@@ -1,0 +1,27 @@
+{% extends 'basic.html' %}
+{% load static %}
+{% block body %}
+
+  
+     <form action="{% url 'quiz_upload' %}" method="post" enctype="multipart/form-data">  
+        {% csrf_token %}
+        <div class="form container flex justify-center m-4 m-x-[50px]">
+            {{form.fr_ky}}     Please Choose the last Option Only
+        </div>
+    <div class="container flex flex-row m-4">
+        <div>
+         <h1 class="text-center font-semibold "> Upload Quizz(JSON FILE):</h1>
+        <div class="form container m-4">
+            {{form.data}}
+        </div></div>
+        <div>
+        <h1 class="text-center font-semibold "> Upload Study Material(PDF FILE):</h1>
+        <div class="form container m-4">
+            {{form.study_material}}
+        </div></div>
+        
+    </div>
+        <button type="submit" class="bg-green-400 p-2 rounded-md ml-[40%] justify-center">Submit</button>
+    </form>  
+
+{% endblock %}
