@@ -1,0 +1,169 @@
+<!-- <!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <title>Spotify Clone</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/ef85b724bf.js" crossorigin="anonymous"></script>
+     {% block script %}
+     {% endblock %}
+     {% block style %}
+     {% endblock %}
+    <style>
+    </style>
+</head>
+<body class="">
+<div class="bg-black text-white aside top-20 max-w-xs p-4 border border-gray-700 h-screen flex float-left">
+    <nav class="navbar">
+        <ul class="nav-links my-4 p-4 ">
+            <li class="text-2xl flex items-center"><img src="./covers/logo.png" class="max-h-10 max-w-10 mr-2" alt="Spotify">Spotify</li>
+        </ul>
+        <ul class=" nav-links my-4 p-4 ">
+            <li><i class="fa-solid fa-house-chimney"></i><a href="{% url 'home' %}"> Home</a></li>
+            <li><a href="#"><i class="fa-solid fa-magnifying-glass"></i> Search</a></li>
+             </ul>
+        
+        <ul class="nav-links my-4 p-4 ">
+            {% if user.is_authenticated %}
+            
+            <li><a href="#"><i class="fa-sharp fa-solid fa-bookmark"></i> Your Library</a></li>
+            <li><a href="{% url 'profile' %}"><i class="fa-brands fa-instalod"></i> Your Profile </a></li>
+            <li><a href="{% url 'post' %}"><i class="fa-solid fa-square-plus"></i> Create Blog</a></li>
+            <li><a href="#"><i class="fa-sharp fa-solid fa-heart"></i> Comments </a></li>
+            <li><a href="{% url 'logout' %}"><i class="fa-sharp fa-solid fa-bookmark"></i> Logout </a></li>
+
+            {% else %}
+           <li><a href="{% url 'authenticated' %}"><i class="fa-sharp fa-solid fa-bookmark"></i> Login </a></li>
+           <li><a href="{% url 'register' %}"><i class="fa-sharp fa-solid fa-bookmark"></i> SignUp </a></li>
+           {% endif %}
+            
+        </ul>
+        <ul class="nav-links my-4 p-4 ">
+            <li><a href="#"><i class="fa-brands fa-instalod"></i> Install App</a></li>
+        </ul>
+    </nav>
+</div>
+<div class="container">
+{% if messages %}
+  <ul class="messages">
+    {% for message in messages %}
+    <div class="p-8 bg-gray-500 ">
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}</div>
+  </ul>
+  {% endif %}       
+<!-- main body  -->
+<!-- <main class="relative flex flex-col">
+    <nav class="horizontal_nav opacity-50 py-4 flex flex-row ">
+        <ul class="horizontal_nav opacity-50 py-4 flex flex-row">
+            <li><a href="#">Explore More</a></li>
+            <li><a href="#">User@ashu</a></li>
+            <li><a href="#">Premium</a></li>
+            <li class="button"><a href="login.html">Login</a></li>
+        </ul>
+    </nav>
+   
+    <!-- <hr class="mt-10 mb-12 mx-auto w-4/5 border-t border-gray-600"> -->
+<!-- </main> -->
+{% block body %}
+{% endblock %}</div>
+
+</body>
+</html> -->
+
+////////////////////////////////////////////
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify Clone Blog</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css"> <!-- Include your custom CSS file here -->
+    <script src="https://kit.fontawesome.com/ef85b724bf.js" crossorigin="anonymous"></script>
+</head>
+<body class="bg-gray-100 text-gray-800 font-sans">
+
+<!-- Navigation -->
+<nav class="bg-black text-white p-4">
+    <div class="container mx-auto flex justify-between items-center">
+        <a href="#" class="text-2xl flex items-center">
+            <img src="./covers/logo.png" class="h-10 w-10 mr-2" alt="Spotify"> Spotify
+        </a>
+        <!-- Mobile Menu Button -->
+        <div class="md:hidden">
+            <button id="mobile-menu-button" class="text-white">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        <!-- Desktop Navigation -->
+        <ul class="hidden md:flex space-x-4">
+            <li><a href="{% url 'home' %}"><i class="fas fa-home mr-1"></i> Home</a></li>
+            <li><a href="#"><i class="fas fa-search mr-1"></i> Search</a></li>
+            <!-- Add more navigation links as needed -->
+            {% if user.is_authenticated %}
+            <li><a href="{% url 'profile' %}"><i class="fas fa-user mr-1"></i> Your Profile</a></li>
+            <li><a href="{% url 'post' %}"><i class="fas fa-edit mr-1"></i> Create Blog</a></li>
+            <li><a href="#"><i class="fas fa-comment-dots mr-1"></i> Comments</a></li>
+            <li><a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt mr-1"></i> Logout</a></li>
+            {% else %}
+            <li><a href="{% url 'authenticated' %}"><i class="fas fa-sign-in-alt mr-1"></i> Login</a></li>
+            <li><a href="{% url 'register' %}"><i class="fas fa-user-plus mr-1"></i> SignUp</a></li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
+
+<!-- Mobile Navigation (Hidden by Default) -->
+<div class="md:hidden" id="mobile-menu">
+    <ul class="bg-black text-white text-center p-4">
+        <li><a href="{% url 'home' %}"><i class="fas fa-home mr-1"></i> Home</a></li>
+        <li><a href="#"><i class="fas fa-search mr-1"></i> Search</a></li>
+        <!-- Add more mobile navigation links as needed -->
+        {% if user.is_authenticated %}
+        <li><a href="{% url 'profile' %}"><i class="fas fa-user mr-1"></i> Your Profile</a></li>
+        <li><a href="{% url 'post' %}"><i class="fas fa-edit mr-1"></i> Create Blog</a></li>
+        <li><a href="#"><i class="fas fa-comment-dots mr-1"></i> Comments</a></li>
+        <li><a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt mr-1"></i> Logout</a></li>
+        {% else %}
+        <li><a href="{% url 'authenticated' %}"><i class="fas fa-sign-in-alt mr-1"></i> Login</a></li>
+        <li><a href="{% url 'register' %}"><i class="fas fa-user-plus mr-1"></i> SignUp</a></li>
+        {% endif %}
+    </ul>
+</div>
+
+<!-- Content Section -->
+<div class="container mx-auto mt-8 p-4">
+    {% if messages %}
+    <ul class="messages">
+      {% for message in messages %}
+      <div class="p-8 bg-gray-500 ">
+      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+      {% endfor %}</div>
+    </ul>
+    {% endif %}       
+  
+  {% block body %}
+  {% endblock %}   
+</div>
+
+<!-- Footer Section -->
+<footer class="bg-black text-white p-4">
+    <div class="container mx-auto text-center">
+        <p>&copy; 2023 Spotify Clone Blog. All rights reserved.</p>
+    </div>
+</footer>
+
+<!-- JavaScript for Mobile Menu -->
+<script>
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    mobileMenuButton.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+    });
+</script>
+
+</body>
+</html>

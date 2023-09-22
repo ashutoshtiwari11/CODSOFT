@@ -1,0 +1,186 @@
+{% extends 'basic.html' %}
+{% load static %}
+
+{% block style %}
+<style>
+    /* Custom styles for course completion page */
+    .course-completion {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+
+    .sidebar {
+        flex: 1;
+        background-color: #f7f7f7;
+        padding: 20px;
+    }
+
+    .main-content {
+        flex: 3;
+        padding: 20px;
+    }
+
+    .section-heading {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .video-container {
+        position: relative;
+        padding-bottom: 56.25%; /* 16:9 aspect ratio */
+        height: 0;
+        overflow: hidden;
+    }
+
+    .video-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    .checkbox-label {
+        display: flex;
+        align-items: center;
+        margin-top: 10px;
+    }
+
+    .checkbox-label input[type="checkbox"] {
+        margin-right: 10px;
+    }
+
+    .submit-button {
+        margin-top: 20px;
+        text-align: center;
+    }
+
+    .submit-button a {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+
+    .submit-button a:hover {
+        background-color: #0056b3;
+    }
+
+    .blog-content {
+        margin-top: 20px;
+        font-size: 1.125rem;
+        line-height: 1.6;
+    }
+
+    /* Improved styles */
+    .post-image {
+        border: 2px solid #fff;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .comment-form {
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+    .comment-form label {
+        font-size: 1.125rem;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .comment-form textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        resize: vertical;
+    }
+
+    .comment-form button {
+        background-color: #007bff;
+        color: #fff;
+        border: 1px solid #0056b3;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .comment-form button:hover {
+        background-color: #0056b3;
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="course-completion bg-green-500">  
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <h1 class="text-2xl font-semibold flex justify-center mb-4">Read Blog</h1>
+        
+        <div class="bg-white rounded-lg p-4 shadow-md  overflow-hidden">
+            <img src="{{ post.thumbnail.url }}" alt="{{ post.title }}" class="w-full h-64 rounded-xl object-cover post-image">
+            <div class="author-section  mt-8 flex items-center">
+                <img src="{{img}}" alt="Author Name" class="w-12 h-12 mx-[30%] rounded-full mr-4">
+                <div>
+                    <p class="text-gray-600 flex-end">{{ post.pub_date }}</p>
+                    <a href="#" class="hover:text-blue-500 flex items-center">
+                        <i class="fas fa-pencil-alt mr-2"></i> {{post.user.username}}
+                    </a>
+                </div>
+            </div>
+           
+            <!-- Author Section -->
+        </div>    
+        
+        <div id="video-section" class="my-4">
+            <div class="bg-white rounded-lg p-4 shadow-md  overflow-hidden">
+            <div class="p-4">
+                <h1 class="text-3xl font-semibold flex justify-center">{{ post.title|title }}</h1>
+            </div>
+            <div class="blog-content rounded-sm p-4 m-4 ">
+                {{post.content|safe}}
+            </div>
+        </div></div>
+        <div class="comment-form my-8  p-2 bg-white custom-div rounded-lg">
+            <a href="#"><i class="fas fa-comment-dots mr-1"></i> Comments</a>       
+            {% for comment in comments %}
+            <div class="author-section border border-black mt-2 flex items-center">
+                <i class="fas fa-pencil-alt mr-2"></i> 
+        
+                <div class="mx-10">
+                               <p class="text-md font-semibold">{{comment.user.username}}</p>
+                    <p class="text-sm font-semibold">{{comment.timeStamp}}</p>
+                </div>
+                <p class="text-md font-semibold">{{comment.content}}</p>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="comment-form my-8 custom-div">
+            <h2 class="text-xl font-semibold mb-4">Leave a Comment</h2>
+            {% if user.is_authenticated %}
+            <form action="{% url 'comment' id=post.post_id %}" method="post">
+                {% csrf_token %}
+                <div class="mb-4">
+                    <label for="comment" class="block text-gray-700">Your Comment:</label>
+                    <textarea id="comment" name="comment" rows="4" class="w-full p-2 rounded-lg border border-gray-300 focus:outline-none focus:border-blue-400" required></textarea>
+                </div>
+                <div>
+                    <button type="submit" class="btn bg-white p-2 rounded-sm border border-black hover:border-green">Comment</button>
+                </div>
+            </form>
+            {% else %}
+            <p class="text-xl text-gray-600">Please <a href="{% url 'authenticated' %}" class="text-blue-500">log in</a> or <a href="{% url 'register' %}" class="text-blue-500">register</a> to leave a comment.</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+</div>
+
+{% endblock %}

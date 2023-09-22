@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Earthly Blogs </title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/ef85b724bf.js" crossorigin="anonymous"></script>
+     {% block style %}{% endblock %}
+ </head>
+<body class="bg-green-500 text-brown-800 font-sans">
+
+<!-- Navigation -->
+<nav class="bg-brown-700 text-white p-4">
+    <div class="container mx-[1%] flex justify-between items-center">
+        <img src="../static/logo.jpeg" class="h-8 w-8 mr-1 rounded-full" alt="#"> 
+        <a href="#" class="text-md font-semibold flex mx-2 items-center">
+            Earthly
+        </a>
+        <!-- Mobile Menu Button -->
+        <div class="md:hidden">
+            <button id="mobile-menu-button" class="text-white">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        <!-- Desktop Navigation -->
+        <ul class="hidden md:flex space-x-4">
+            <li><a href="{% url 'home' %}"><i class="fas fa-home mr-1"></i> Home</a></li>
+            <li><form action="{% url 'home' %}"><input type="text" placeholder="Search" name="q" class="form text-black rounded-lg px-2"><button type='submit'><i class="fas fa-search mx-3"></i></button></form></li>
+            <!-- <li><a href="#"><i class="fas fa-search mr-1"></i> Search</a></li> -->
+            <!-- Add more navigation links as needed -->
+            {% if user.is_authenticated %}
+            <li><a href="{% url 'profile' %}"><i class="fas fa-user mr-1"></i> Your Profile</a></li>
+            <li><a href="{% url 'post' %}"><i class="fas fa-edit mr-1"></i> Create Blog</a></li>
+            <li><a href="#"><i class="fas fa-comment-dots mr-1"></i> Comments</a></li>
+            <li><a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt mr-1"></i> Logout</a></li>
+            {% else %}
+            <li><a href="{% url 'authenticated' %}"><i class="fas fa-sign-in-alt mr-1"></i> Login</a></li>
+            <li><a href="{% url 'register' %}"><i class="fas fa-user-plus mr-1"></i> SignUp</a></li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
+
+<!-- Mobile Navigation (Hidden by Default) -->
+<div class="md:hidden" id="mobile-menu">
+    <ul class="bg-green-500 text-white font-semibold text-center p-4">
+        <li><a href="{% url 'home' %}"><i class="fas fa-home mr-1"></i> Home</a></li>
+        <li class="my-1"><form action="{% url 'home' %}"><input type="text" placeholder="Search" name="q" class="form text-black rounded-lg px-2"><button type='submit'><i class="fas fa-search mx-3"></i></button></form></li>
+             <!-- Add more mobile navigation links as needed -->
+        {% if user.is_authenticated %}
+        <li><a href="{% url 'profile' %}"><i class="fas fa-user mr-1"></i> Your Profile</a></li>
+        <li><a href="{% url 'post' %}"><i class="fas fa-edit mr-1"></i> Create Blog</a></li>
+        <li><a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt mr-1"></i> Logout</a></li>
+        {% else %}
+        <li><a href="{% url 'authenticated' %}"><i class="fas fa-sign-in-alt mr-1"></i> Login</a></li>
+        <li><a href="{% url 'register' %}"><i class="fas fa-user-plus mr-1"></i> SignUp</a></li>
+        {% endif %}
+    </ul>
+</div>
+
+<!-- Content Section -->
+<div class="container mx-auto mt-8 p-4">
+    {% if messages %}
+    <ul class="messages">
+      {% for message in messages %}
+      <div class="p-8 text-green-500 text-bold rounded-lg  bg-white ">
+      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+      {% endfor %}</div>
+    </ul>
+    {% endif %}       
+  
+  {% block body %}
+  {% endblock %}   
+</div>
+
+<!-- Footer Section -->
+<footer class="bg-brown-700 text-white p-4">
+    <div class="w-full px-4 mb-8">
+         
+        <div class="container mx-auto text-center">
+            <p>&copy; 2023 Earthly Blog. All rights reserved.</p>
+            <ul class="flex justify-center">
+                <li>
+                    <a href="#" class="hover:text-blue-500 m-4 flex items-center">
+                        <i class="fab fa-facebook mr-2"></i> Facebook
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="hover:text-blue-500 m-4 flex items-center">
+                        <i class="fab fa-twitter mr-2"></i> Twitter
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="hover:text-blue-500 flex m-4 items-center">
+                        <i class="fab fa-linkedin mr-2"></i> LinkedIn
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="hover:text-blue-500 m-4 flex items-center">
+                        <i class="fab fa-instagram mr-2"></i> Instagram
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    
+   
+</footer>
+
+<!-- JavaScript for Mobile Menu -->
+<script>
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    mobileMenuButton.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+    });
+</script>
+
+</body>
+</html>

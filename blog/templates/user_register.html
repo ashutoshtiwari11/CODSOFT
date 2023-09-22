@@ -1,0 +1,99 @@
+{% extends 'basic.html' %}
+{% load static %}
+{% block style %}
+<style>
+    /* Custom styles for user registration and login page */
+    .form-container {
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #ffffff;
+        border: 1px solid #e4e4e4;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-container h1 {
+        font-size: 24px;
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .logo {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .logo img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .form-input {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    .form-input[type="file"] {
+        padding: 5px;
+    }
+
+    .form-button {
+        width: 100%;
+        padding: 10px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .form-button:hover {
+        background-color: #0056b3;
+    }
+</style>
+{% endblock %}
+{% block body %}
+<div class="form-container">
+    <div class="logo">
+        <img src="{% static 'logo.png' %}" alt="Logo">
+    </div>
+    {% if  content_required == 'register' %}
+    <h1>Register</h1>
+    <form method="post" action="{% url 'register' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="text" name="fname" class="form-input" placeholder="First Name" required>
+        <input type="text" name="lname" class="form-input" placeholder="Last Name" required>
+        <textarea type="text" name="bio" class="form-input" placeholder="Your Bio: " required>
+        </textarea>
+        <input type="text" name="uname" class="form-input" placeholder="User-Name" required>
+         <input type="email" name="email" class="form-input" placeholder="Email" required>
+        <input type="password" name="password" class="form-input" placeholder="Password" required>
+        <input type="number" name="phone" class="form-input" placeholder="phone" required>
+        <input type="text" name="country" class="form-input" placeholder="Country" required>
+        <input type="text" name="city" class="form-input" placeholder="City" required>
+        <input type="file" name="img" accept="image/*" class="form-input" required>
+        <button type="submit" class="form-button">Register</button>
+    </form>
+    {% else %}
+    <h1>Login</h1>
+    <form action="{% url 'authenticated' %}" method="post">
+        {% csrf_token %}
+        <div>
+            <label for="uname">Username</label>
+            <input type="text" class='form-input' id="uname" name="uname" class="form-input" required>
+        </div>
+        <div>
+            <label for="pswd">Password</label>
+            <input type="password" class="form-input" name="pswd" id="pswd" class="form-input" required>
+        </div>
+        <button type="submit" class="form-button">Login</button>
+    </form>
+    {% endif %}
+</div>
+{% endblock %}
